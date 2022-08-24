@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  * {
+    @apply transition-all duration-150 ease-in-out;
+  }
+}
