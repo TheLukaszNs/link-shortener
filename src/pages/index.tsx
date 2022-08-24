@@ -1,11 +1,9 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { DarkModeToggle } from "../components/home/DarkModeToggle";
 import { LinkInput } from "../components/home/LinkInput";
-import { useDarkMode } from "../contexts/darkModeContext";
 
 const Home: NextPage = () => {
-  const { toggleMode } = useDarkMode();
-
   return (
     <>
       <Head>
@@ -13,14 +11,11 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex flex-col justify-center items-center h-screen gap-4 w-1/3 mx-auto">
-        <button
-          onClick={toggleMode}
-          className="absolute top-8 left-8 dark:text-white"
-        >
-          Toggle Dark Mode
-        </button>
-        <h1 className="text-[3rem] font-bold mb-8 text-black dark:text-white">
+      <main className="flex flex-col justify-center items-center h-screen gap-4 w-3/4 mx-auto">
+        <div className="absolute top-8 right-8">
+          <DarkModeToggle />
+        </div>
+        <h1 className="text-[2.5rem] md:text-[3rem] leading-tight text-center font-bold mb-8 text-black dark:text-white">
           shorten your <span className="text-teal-400">link</span>
         </h1>
         <LinkInput />
