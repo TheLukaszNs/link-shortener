@@ -10,6 +10,7 @@ import { useUpdateEffect } from "../hooks/useUpdateEffect";
 type DarkModeContextType = {
   mode: "light" | "dark";
   toggleMode: () => void;
+  setDarkMode: (enabled: boolean) => void;
 };
 
 const DarkModeContext = createContext<DarkModeContextType | null>(null);
@@ -24,6 +25,10 @@ export const DarkModeProvider = ({ children }: PropsWithChildren) => {
     setMode(mode === "light" ? "dark" : "light");
   };
 
+  const setDarkMode = (enabled: boolean) => {
+    setMode(enabled ? "dark" : "light");
+  };
+
   useEffect(() => {
     const root = document.documentElement;
     root.classList.remove(mode === "dark" ? "light" : "dark");
@@ -31,7 +36,7 @@ export const DarkModeProvider = ({ children }: PropsWithChildren) => {
   }, [mode]);
 
   return (
-    <DarkModeContext.Provider value={{ mode, toggleMode }}>
+    <DarkModeContext.Provider value={{ mode, toggleMode, setDarkMode }}>
       {children}
     </DarkModeContext.Provider>
   );
